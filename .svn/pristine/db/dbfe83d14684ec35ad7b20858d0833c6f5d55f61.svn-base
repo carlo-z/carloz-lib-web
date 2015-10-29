@@ -1,0 +1,67 @@
+{% extends "default/admin.html" %}
+{% import "default/moudle_page_index.html" as macros %}
+
+{% block title %}Article Admin{% endblock %}
+{% block head %}
+{{ super() }}
+    <link href="{{ url_for('static', filename='default/css/admin_article.css') }}" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block page_content %}
+    <div id="admin_article">
+        <div id="tool_bar">
+          <ul>
+            <li><a href="{{ url_for('main.admin_article', action='new') }}">New</a></li>
+            <li><a href="">Bakup</a></li>
+            <li><a href="">TagList</a></li>
+            <li><a href="">Setting</a></li>
+          </ul>
+          <div style="clear:both;"></div>
+        </div>
+        <div id="article_list">
+            <div class="article_list_area">
+                <table>
+                    {% if articleList %}
+                    <tr>
+                        <th class="min-w270"></th>
+                        <th class="disuss">评论</th>
+                        <th class="pv">浏览</th>
+                        <th class="public">公开</th>
+                        <th class="edit">操作</th>
+                        <th class="delete">操作</th>
+                    </tr>
+                    {% endif %}
+                    {% for article in articleList %}
+                    <tr id="{{ 'article_%d' % article.id }}">
+                        <td class="tl min-w270">
+                            <a href="{{ url_for('main.article_x', unique_domain=article.author_domain, article_id=article.id) }}">
+                                {{ article.title }}
+                            </a>({{ article.update_time }})
+                        </td>
+                        <td class="disuss">0</td>
+                        <td class="pv">2</td>
+                        <td class="public">2</td>
+                        <td class="edit">
+                            <a href="{{ url_for('main.admin_article', action='update', articleId=article.id) }}">编辑</a>
+                        </td>
+                        <td class="delete">
+                            <a href="{{ url_for('main.admin_article', action='delete', articleId=article.id) }}">删除</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                {% if articleList %}{% else %}<h1>no have article yet! create it?</h1>{% endif %}
+            </div>
+            <div class="page-index">
+            {% if pagination %}
+                {{ macros.pagination_widget(pagination, url_for('main.admin_article')) }}
+            {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+    <script src="{{ url_for('static', filename='default/js/admin_article.js') }}" type="text/javascript"></script>
+{% endblock %}

@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block title %}{{ keywords }}_czLib{% endblock %}
+{% block head %}
+{{ super() }}
+<link href="{{ url_for('static', filename='default/css/page_search_result.css') }}" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block content %}
+<div id="search_result_panel">
+
+    <div class="content_top">
+        {% include 'default/moudle_g_search_bar.html' %}
+        <div><br /><br /></div>
+    </div>
+    <div class="content_left">
+        <div class="result_item_article" style="display:none;">
+            <h3><a href="#">coding的最新相关信息</a></h3>
+            <ul>
+                <li>最新更新：2015-4-3 2:25</li>
+                <li>122人赞同</li>
+                <li>44人反对</li>
+            </ul>
+            <div class="article_body">
+                <a href="#">
+                    <img alt="" src="http://p.blog.csdn.net/images/p_blog_csdn_net/sealyao/594039/o_clip_image001_thumb.jpg" />
+                </a>
+                <div>哈哈哈哈哈哈嘎嘎嘎嘎嘎嘎哈哈哈哈哈哈嘎嘎嘎嘎嘎哈哈哈哈哈哈哈嘎嘎嘎嘎嘎哈哈哈哈嘎嘎嘎嘎嘎哈哈哈哈嘎嘎嘎嘎嘎哈哈哈哈嘎嘎嘎嘎嘎哈哈哈哈嘎嘎嘎嘎嘎哈哈哈哈</div>
+            </div>
+            <div class="article_label">
+                <span>标签：</span>
+                <a href="#">ide</a>
+                <a href="#">coding</a>
+                <a href="#">ide</a>
+                <a href="#">coding</a>
+                <a href="#">ide</a>
+            </div>
+        </div>
+        {% for article in articleList %}
+        <div class="result_item_article">
+            <h3><a href="{{ url_for('main.article_x', unique_domain=article.author_domain, article_id=article.id) }}">{{ article.title }}</a></h3>
+            <ul>
+                <li>更新：{{ article.update_time }}</li>
+                <li>{{ article.praise_num }}人赞同</li>
+                <li>{{ article.dispraise_num }}人反对</li>
+            </ul>
+            <div class="article_body">
+                {% if article.img %}
+                <img src="{{ article.img }}" />{% endif %}
+                {% if article.body_simple %}
+                <div>{{ '%s...' % article.body_simple[0:250] }}</div>{% endif %}
+            </div>
+            <div class="article_label">
+            </div>
+        </div>
+        {% endfor %}
+        {% if not articleList %}
+        <h1>Sorry, not found related information~</h1>
+        {% endif %}
+    </div>
+    <div class="content_right"></div>
+    <div class="clear"></div>
+    <div class="refer_link"></div>
+    <div class="page_index"></div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+<script src="{{ url_for('static', filename='default/js/page_search_result.js') }}" type="text/javascript"></script>
+{% endblock %}

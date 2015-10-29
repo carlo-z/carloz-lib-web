@@ -1,0 +1,157 @@
+<div id="article_comment">
+    <div class="comment_list">
+        {% if comment_list %}
+        <h2>comment list</h2>
+        {% endif %}
+        {% for comment in comment_list %}
+        <div id="comment_{{ comment.id }}" class="comment_item">
+            <div class="comment_item_head">
+                <a>#{{ comment.sequence_of_article }}</a>
+                <a>{{ comment.create_time }}</a>
+                {% if comment.from_user_id > 0 %}
+                <a href="{{ url_for('main.user_domain', unique_domain=comment.from_user_domain) }}">{{ comment.from_user_name }}</a>
+                {% else %}
+                <a>{{ comment.from_user_name }}</a>
+                {% endif %}
+                <a name="comment_id_{{ comment.id }}"></a>
+            </div>
+            <div class="comment_item_body">
+                {% if comment.to_comment_id > 0 %}
+                    <div class="at_sb">
+                        Re: <a href="#comment_id_{{ comment.to_comment_id }}">#{{ comment.to_sequence_of_article }}</a>
+                        {% if comment.to_user_id > 0 %}
+                        <a href="{{ url_for('main.user_domain', unique_domain=comment.to_user_domain) }}">@{{ comment.to_user_name }}</a>
+                        {% else %}
+                        <span>@{{ comment.to_user_name }}</span>
+                {% endif %}
+                    </div>
+                    {% if comment.to_comment_body %}
+                    <div class="comment_quote">{{ comment.to_comment_body|safe }}</div>
+                    {% endif %}
+                {% endif %}
+                <div class="comment_body">{{ comment.body_default|safe }}</div>
+            </div>
+            <div class="comment_item_rear">
+                {% if (current_user.is_authenticated() and (current_user.id == article.author_id or current_user.id == comment.from_user_id)) or (comment.from_user_id < 0 and comment.from_user_name == request.remote_addr) %}
+                <a onclick="return delete_comment({{ comment.id }})">delete</a>
+                {% endif %}
+                <a onclick="return add_comment({{comment.id}}, '{{comment.from_user_name}}')">comment</a>
+                <a onclick="return add_comment_quote({{comment.id}}, '{{comment.from_user_name}}')">quote</a>
+                <a onclick="return agree_comment({{ comment.id }})">agree(<span id="comment_agree_{{ comment.id }}">{{ comment.agree_num }}</span>)</a>
+                <a onclick="return disagree_comment({{ comment.id }})">disagree(<span id="comment_disagree_{{ comment.id }}">{{ comment.disagree_num }}</span>)</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div id="comment_editor" class="comment_editor">
+        <a name="comment_editor_anchor"></a>
+        <a id="to_article_id" class="hidden">{{ article.id }}</a>
+        <a id="add_comment_quote" class="hidden"></a>
+        <a id="to_comment_id" class="hidden"></a>
+        <a id="editor_code" class="hidden">ueditor</a>
+        <div id="comment_editor_head"  class="hidden">
+            Re:<span id="to_user_name"></span>
+            <a onclick="return cancel_comment()">cancel reply</a>
+        </div>
+        <div id="comment_editor_body">
+            <textarea id="comment_body"></textarea>
+            <input type="button" onclick="return submit_comment()" value="submit comment" class="btn" />
+        </div>
+
+        <script type='text/javascript'>
+            var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+            function submit_comment() {
+                if($.trim($('#comment_body').val()) == '') return false;
+                var submit_url = '';
+                if('true' == $('#add_comment_quote').text()){
+                    submit_url = $SCRIPT_ROOT + "{{ url_for('main.article_comment', option='quote') }}";
+                }else{
+                    submit_url = $SCRIPT_ROOT + "{{ url_for('main.article_comment', option='add') }}";
+                }
+                $.ajax({
+                    type: 'post',
+                    url: submit_url,
+                    dataType: 'html', //return data type
+                    data:{
+                        to_article_id: $('#to_article_id').text(),
+                        to_comment_id: $('#to_comment_id').text(),
+                        editor_code: $('#editor_code').text(),
+                        comment_body: $('#comment_body').val()
+                    },
+                    error: function(xhr, err){
+                        alert('submit failed, ' + err + '！')
+                    },
+                    success: function(data, textStatus){
+                        $('.comment_list').append(data);
+                    }
+                });
+                cancel_comment();
+                return false;
+            }
+            function add_comment(comment_id, comment_to_user_name) {
+                $('.comment_editor #to_comment_id').text(comment_id);
+                $('.comment_editor #to_user_name').text(comment_to_user_name);
+                $('.comment_editor #add_comment_quote').text('false');
+                $('.comment_editor #comment_editor_head').show();
+                $('html,body').animate({scrollTop:$('#comment_editor').offset().top}, 1000);
+                return false;
+            }
+            function add_comment_quote(comment_id, comment_to_user_name) {
+                $('.comment_editor #to_comment_id').text(comment_id);
+                $('.comment_editor #to_user_name').text(comment_to_user_name);
+                $('.comment_editor #add_comment_quote').text('true');
+                $('.comment_editor #comment_editor_head').show();
+                $('html,body').animate({scrollTop:$('#comment_editor').offset().top}, 1000);
+                return false;
+            }
+            function cancel_comment() {
+                $('.comment_editor #to_comment_id').text('');
+                $('.comment_editor #to_user_name').text('');
+                $('.comment_editor #comment_body').val('');
+                $('.comment_editor #add_comment_quote').text('false');
+                $('.comment_editor #comment_editor_head').hide();
+                return false;
+            }
+            function delete_comment(comment_id) {
+                $.getJSON($SCRIPT_ROOT + "{{ url_for('main.article_comment', option='delete') }}", {
+                    comment_id: comment_id
+                }, function(data) {
+                    if('success' == data.result) {
+                        $("#comment_"+comment_id).hide();
+                    } else {
+                        alert("delete comment fail");
+                    }
+                });
+                return false;
+            }
+            function agree_comment(comment_id) {
+                $.getJSON($SCRIPT_ROOT + "{{ url_for('main.article_comment', option='agree') }}", {
+                    comment_id: comment_id
+                }, function(data) {
+                    if('success' == data.result) {
+                        $("#comment_agree_"+comment_id).text(data.result_num);
+                    } else if('fail' == data.result) {
+                        if('repeat' == data.result_info) {
+                            alert('Do not repeat!');
+                        }
+                    }
+                });
+                return false;
+            }
+            function disagree_comment(comment_id) {
+                $.getJSON($SCRIPT_ROOT + "{{ url_for('main.article_comment', option='disagree') }}", {
+                    comment_id: comment_id
+                }, function(data) {
+                    if('success' == data.result) {
+                        $("#comment_disagree_"+comment_id).text(data.result_num);
+                    } else if('fail' == data.result) {
+                        if('repeat' == data.result_info) {
+                            alert('Do not repeat!');
+                        }
+                    }
+                });
+                return false;
+            }
+        </script>
+    </div>
+</div>

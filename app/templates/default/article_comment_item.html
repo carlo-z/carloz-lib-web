@@ -1,0 +1,39 @@
+{% if comment  %}
+<div id="comment_{{ comment.id }}" class="comment_item">
+    <div class="comment_item_head">
+        <a>#{{ comment.sequence_of_article }}</a>
+        <a>{{ comment.create_time }}</a>
+        {% if comment.from_user_id > 0 %}
+        <a href="{{ url_for('main.user_domain', unique_domain=comment.from_user_domain) }}">{{ comment.from_user_name }}</a>
+        {% else %}
+        <a>{{ comment.from_user_name }}</a>
+        {% endif %}
+        <a name="comment_id_{{ comment.id }}"></a>
+    </div>
+    <div class="comment_item_body">
+        {% if comment.to_comment_id > 0 %}
+            <div class="at_sb">
+                Re: <a href="#comment_id_{{ comment.to_comment_id }}">#{{ comment.to_sequence_of_article }}</a>
+                {% if comment.to_user_id > 0 %}
+                <a href="{{ url_for('main.user_domain', unique_domain=comment.to_user_domain) }}">@{{ comment.to_user_name }}</a>
+                {% else %}
+                <span>@{{ comment.to_user_name }}</span>
+        {% endif %}
+            </div>
+            {% if comment.to_comment_body %}
+            <div class="comment_quote">{{ comment.to_comment_body|safe }}</div>
+            {% endif %}
+        {% endif %}
+        <div class="comment_body">{{ comment.body_default|safe }}</div>
+    </div>
+    <div class="comment_item_rear">
+        {% if (current_user.is_authenticated() and (current_user.id == article.author_id or current_user.id == comment.from_user_id)) or (comment.from_user_id < 0 and comment.from_user_name == request.remote_addr) %}
+        <a onclick="return delete_comment({{ comment.id }})">delete</a>
+        {% endif %}
+        <a onclick="return add_comment({{comment.id}}, '{{comment.from_user_name}}')">comment</a>
+        <a onclick="return add_comment_quote({{comment.id}}, '{{comment.from_user_name}}')">quote</a>
+        <a onclick="return agree_comment({{ comment.id }})">agree(<span id="comment_agree_{{ comment.id }}">{{ comment.agree_num }}</span>)</a>
+        <a onclick="return disagree_comment({{ comment.id }})">disagree(<span id="comment_disagree_{{ comment.id }}">{{ comment.disagree_num }}</span>)</a>
+    </div>
+</div>
+{% endif %}

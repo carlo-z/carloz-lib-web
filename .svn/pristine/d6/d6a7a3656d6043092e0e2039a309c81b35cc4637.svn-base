@@ -1,0 +1,11 @@
+.top-bar .index-page {display:none;}
+.top-bar .night-style {}
+.top-bar .search-page {display:none;}
+.top-bar .setting-page {}
+.top-bar .current-user {}
+.top-bar .logout-btn {}
+.top-bar .login-btn {}
+.top-bar .register-btn {}
+.g_taglist {
+    padding: 0px 3% 0px 3%;
+}

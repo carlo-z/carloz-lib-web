@@ -1,0 +1,6 @@
+python create_table.py shell
+from create_table import db
+db.drop_all();
+db.create_all();
+exit();
+mysqldump -u root -p carloblog > carloblog.sql

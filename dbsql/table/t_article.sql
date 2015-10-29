@@ -1,0 +1,42 @@
+DROP TABLE IF EXISTS `t_article`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `t_article` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `article_id` int(11) DEFAULT NULL,
+  `title` varchar(200) NOT NULL,
+  `tag_list` varchar(1024) DEFAULT NULL,
+  `from_url` text,
+  `keywords` varchar(200) DEFAULT NULL,
+  `img` text,
+  `abstract` text,
+  `access_level` varchar(64) DEFAULT NULL,
+  `access_passwd` varchar(200) DEFAULT NULL,
+  `author_id` int(11) NOT NULL,
+  `author_domain` varchar(200) NOT NULL,
+  `author_name` varchar(200) DEFAULT NULL,
+  `pv_num` int(11) DEFAULT NULL,
+  `praise_num` int(11) DEFAULT NULL,
+  `dispraise_num` int(11) DEFAULT NULL,
+  `comment_num` int(11) DEFAULT NULL,
+  `collection_num` int(11) DEFAULT NULL,
+  `attachment_num` int(11) DEFAULT NULL,
+  `attachment_size` varchar(200) DEFAULT NULL,
+  `delete_flag` varchar(16) DEFAULT NULL,
+  `delete_date` datetime DEFAULT NULL,
+  `editor_code` varchar(64) DEFAULT NULL,
+  `body_source` text,
+  `body_default` text,
+  `body_simple` text,
+  `layout_width_start` int(11) DEFAULT NULL,
+  `layout_width_end` int(11) DEFAULT NULL,
+  `css_file_url` text,
+  `create_time` datetime DEFAULT NULL,
+  `create_user_id` int(11) DEFAULT NULL,
+  `update_time` datetime DEFAULT NULL,
+  `update_user_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `ix_t_article_author_domain` (`author_domain`),
+  KEY `ix_t_article_author_id` (`author_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;

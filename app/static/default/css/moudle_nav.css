@@ -1,0 +1,60 @@
+﻿#nav
+{
+    background: #65666D;
+    padding-right: 2%;
+    margin: 0;
+    overflow:hidden;
+}
+#nav ul
+{
+}
+#nav ul li
+{
+    float: left;
+    height: 40px;
+}
+#nav a
+{
+    position: relative;
+    display: block;
+    outline: 0;
+    float: left;
+    color: #fff;
+    font-size: 16px;
+    height: 40px;
+    line-height: 40px;
+    _line-height: 40px\9;
+    overflow: hidden;
+    margin: 0 auto;
+    z-index: 1000;
+    zoom: 1;
+    padding: 0 18px 0 19px;
+    text-decoration: none;
+}
+#nav a:visited
+{
+    color: #fff;
+}
+#nav a:hover
+{
+    background: #55575c;
+    border-left: 1px solid #4e5155;
+    border-right: 1px solid #4e5155;
+    padding: 0 18px;
+    margin-right: -1px;
+    z-index: 1001;
+}
+#nav #admin
+{
+    display: inline-block;
+    width: auto;
+    height: 40px;
+    float: right;
+    background-color: #4DBE39;
+}
+
+#nav .logo{padding: 0; margin: 0; border: 0; overflow: hidden;}
+#nav .logo_name{font-size: 28px; font-weight: bold; color: #FFFFFF;}
+#nav .logo_rear{font-size: 28px; font-weight: bold; color: #4DBE39;}
+
+#nav .csshide{display:none;}

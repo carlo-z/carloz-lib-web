@@ -1,0 +1,21 @@
+<div id="nav">
+  <ul>
+    <li id="nav_logo">
+      <a href="/">
+        <span class="logo">
+          <span class="logo_name">CARLO</span><span class="logo_rear">Z</span>
+        </span>
+      </a>
+    </li>
+    <li><a href="{{ url_for('main.tag_search', tag_name='Android') }}">Android</a></li>
+    <li><a href="{{ url_for('main.tag_search', tag_name='Python') }}">Python</a></li>
+    <li><a href="">Web</a></li>
+    <li><a href="">Cloud Computing</a></li>
+    <li><a href="">UEditor</a></li>
+    {% for nav_item in nav_list %}
+    <li><a href="">{{ nav_item }}</a></li>{% endfor %}
+    <li id="nav_special" class="csshide"><a href="">&gt;&gt;</a></li>
+  </ul>
+  <a id="admin" href="{{ url_for('main.admin') }}">Admin</a>
+</div>
+<div style="clear:both;"></div>

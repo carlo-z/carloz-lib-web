@@ -1,0 +1,13 @@
+<div class="top-bar">
+    <span class="index-page"><a href="/">CARLOZ</a>&nbsp;|&nbsp;</span>
+    {% if current_user.is_authenticated() %}
+    <span class="hidden night-style"><a href="#">夜</a>&nbsp;|&nbsp;</span>
+    <span class="hidden search-page"><a href="#">搜索</a>&nbsp;|&nbsp;</span>
+    <span class="hidden setting-page"><a href="#">设置</a>&nbsp;|&nbsp;</span>
+    <span class="current-user"><a href="{{ url_for('main.admin') }}">{{ current_user.nikename }}</a>&nbsp;|&nbsp;</span>
+    <span class="logout-btn"><a href="{{ url_for('auth.logout') }}">{{ strs.topbar.logout }}</a></span>
+    {% else %}
+    <span class="login-btn"><a href="{{ url_for('auth.login') }}">{{ strs.topbar.login }}</a>&nbsp;|&nbsp;</span>
+    <span class="register-btn"><a href="{{ url_for('auth.regist') }}">{{ strs.topbar.regist }}</a></span>
+    {% endif %}
+</div>

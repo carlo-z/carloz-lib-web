@@ -1,0 +1,107 @@
+#search
+{
+    margin: 0px 1% 0px 1%;
+    text-align: center;
+}
+
+#search .logo
+{
+    margin: 0px 20px 10px 20px;
+    overflow: hidden;
+    text-align: center;
+    height: auto;
+}
+#search .logo_name
+{
+    font-size: 64px;
+    font-weight: bold;
+    color: #65666D;
+}
+#search .logo_rear
+{
+    font-size: 40px;
+    font-weight: bold;
+    color: #4DBE39;
+}
+#search div.form
+{
+    display: block;
+    padding: 0px;
+    margin: 15px 0px 0 0px;
+    height: auto;
+    text-align: center;
+    vertical-align: middle;
+    padding-left: 51%;
+}
+
+#search .search_form{
+    width: auto;
+    margin-left: -50%;
+
+}
+
+#search .search_text{
+    float: left;
+    display: block;
+    overflow: hidden;
+    padding: 5px 1% 5px;
+    vertical-align: middle;
+    color: #111;
+    background-color: #FFF;
+    border-radius: 0px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #C0C0C0 #D9D9D9 #D9D9D9 #D0D0D0;
+    border-image: none;
+    -moz-border-top-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    transition: border 0.2s linear 0s;
+    width: 500px;
+}
+#search .btn_submit{
+    float: left;
+    display: block;
+    overflow: hidden;
+    border: 1px solid #65666D;
+    padding: 0px;
+    margin: 0px;
+    width: 100px;
+    height: 30px;
+    font-size: 15px;
+    background-color: #65666D;
+    color: white;
+    -moz-appearance: none; /* Firefox */
+    -webkit-appearance: none; /* Safari && Chrome */
+    -webkit-border-radius: 0;
+}
+#search .btn_submit:hover{background:#393C3E}
+#search .btn_submit:active{background:#393C3E}
+
+/* layout */
+@media print, screen and (min-width: 800px){
+    #search .logo
+    {
+        margin: 100px 20px 10px 20px;
+        overflow: hidden;
+        text-align: center;
+        height: auto;
+    }
+    #search .logo_name {font-size: 52px;}
+    #search .logo_rear {font-size: 36px;}
+    #search .search_text {
+        width: 500px;
+        padding: 5px 1% 5px;
+        padding-top: 6px\9;
+        padding-bottom: 6px\9;
+        font-size: 16px;
+    }
+    @media screen and (-webkit-min-device-pixel-ratio: 0){
+        #search .search_text {padding-top: 6px;}
+    }
+    #search .btn_submit{
+        height: 35px;
+        font-size: 16px;
+    }
+}

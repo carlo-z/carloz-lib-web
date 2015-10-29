@@ -1,0 +1,167 @@
+﻿/*
+  Carlo-z Offical Website public css file
+  @describtion: include reset, common, header and footer part
+  @time: 2015-03-30
+*/
+
+/*-------------------------------css reset----------------------------*/
+html{color:#3E3E3E;}
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {margin:0;padding:0;}
+table {border-collapse:collapse;border-spacing:0;}
+fieldset, img {border:0;}
+address, caption, cite, code, dfn, th, var {font-style:normal;font-weight:normal;}
+caption, th {text-align:left;}
+h1, h2, h3, h4, h5, h6 {font-size:100%;font-weight:normal;}
+q:before, q:after {content:'';}
+abbr, acronym {border:0;font-variant:normal;}
+sup {vertical-align:text-top;}
+sub {vertical-align:text-bottom;}
+input, textarea, select {font-family:inherit;font-size:inherit;font-weight:inherit;}
+input, textarea, select {*font-size:100%;}
+legend {color:#000;}
+
+/*--------------------------------css common-------------------------------*/
+/*
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.428571429;
+  color: #333333;
+  background-color: #ffffff;
+  background-image: url( '../img/bg/global_bg.png' );
+}
+*/
+/* style */
+html, body, button, input, select, textarea, li {
+    font-size: 14px;
+    color: #454545;
+    line-height: 1.428571429;
+    font-family: "Microsoft YaHei", "WenQuanYi Micro Hei", Arial, sans-serif;
+    text-size-adjust: none;
+    -ms-text-size-adjust: none;
+    -moz-text-size-adjust:none;
+    -webkit-text-size-adjust: none;
+}
+html {background-color:#FFFFFF; overflow-y: scroll;}
+a {text-decoration:none; outline:none; }
+a:hover {text-decoration:underline;}
+
+h1 {font-size: 24px;}
+h2 {font-size: 20px;}
+h3 {font-size: 16px;}
+.f-large {font-size: 20px;}
+.f-medium {font-size: 16px;}
+.f-default {font-size: 12px;}
+.f-small {font-size: 10px;}
+.f-tiny {font-size: 8px;}
+
+@media print, screen and (max-width: 600px) {
+    h1 {font-size: 16px;}
+    h2 {font-size: 14px;}
+    h3 {font-size: 12px;}
+    html, body, button, input, select, textarea, li {font-size: 12px;}
+    .f-large {font-size: 16px;}
+    .f-medium {font-size: 14px;}
+    .f-default {font-size: 12px;}
+    .f-small {font-size: 10px;}
+    .f-tiny {font-size: 8px;}
+}
+
+.clear {clear: both;}
+.clearfix:after {content:'\0020';display:block;height:0;clear:both;}
+.clearfix {*zoom:1;}
+.clearfloat {clear:both;}
+
+.tl {text-align:left;}
+.tc {text-align:center;}
+.tr {text-align:right;}
+
+.min-w270 {min-width: 270px;}
+.min-w300 {min-width: 300px;}
+.mr15 {margin-right: 15px;}
+.hidden {display: none;}
+
+.btn{
+    appearance: none;
+    -o-appearance: none; /* Firefox */
+    -ms-appearance: none; /* Safari 和 Chrome */
+    -moz-appearance: none; /* Firefox */
+    -webkit-appearance: none; /* Safari 和 Chrome */
+
+    border-radius: 0; /* Opera 10.5+, 以及使用了IE-CSS3的IE浏览器 */
+    -o-border-radius: 0; /* Firefox */
+    -ms-border-radius: 0; /* Safari 和 Chrome */
+    -moz-border-radius: 0; /* Firefox */
+    -webkit-border-radius: 0; /* Safari 和 Chrome */
+
+    text-size-adjust: none;
+    -o-text-size-adjust: none;
+    -ms-text-size-adjust: none;
+    -moz-text-size-adjust: none;
+    -webkit-text-size-adjust: none;
+
+    padding: 3px 15px 3px 15px;
+    margin: 0;
+    border: 1px dotted #65666D;
+
+    display: inline-block;
+    color: #FFFFFF;
+    background: #65666D;/*#65666D;*/
+    text-align: center;
+    line-height: 1.428571429;
+    text-decoration: none;
+    outline: none;
+
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+}
+
+.text_field{
+    display: inline-block;
+    background-color: #FFFFFF;
+
+    padding: 2px 5px 2px 5px;
+    margin: 0;
+    border: 1px solid #C0C0C0;
+
+    appearance: none;
+    -o-appearance: none; /* Firefox */
+    -ms-appearance: none; /* Safari 和 Chrome */
+    -moz-appearance: none; /* Firefox */
+    -webkit-appearance: none; /* Safari 和 Chrome */
+
+    border-radius: 0; /* Opera 10.5+, 以及使用了IE-CSS3的IE浏览器 */
+    -o-border-radius: 0; /* Firefox */
+    -ms-border-radius: 0; /* Safari 和 Chrome */
+    -moz-border-radius: 0; /* Firefox */
+    -webkit-border-radius: 0; /* Safari 和 Chrome */
+
+    text-size-adjust: none;
+    -o-text-size-adjust: none;
+    -ms-text-size-adjust: none;
+    -moz-text-size-adjust: none;
+    -webkit-text-size-adjust: none;
+}
+
+
+/*--------------------------------base.html layout-------------------------------*/
+html, body, .wrap {margin:0;padding:0;height: 99%;}
+body > .wrap {height: auto; min-height: 100%;}
+.main {padding: 0 1% 80px 1%;}  /* padding-bottom必须使用和footer相同的高度 */
+.footer {position: relative;
+    margin-top: -60px; /* footer高度的负值 */
+    height: 60px;
+    clear:both;
+}
+.clearfix:after {content:"."; display:block; height:0; clear:both; visibility: hidden;}
+.clearfix {display: inline-block;}
+/* Hides from IE-mac \*/
+* html .clearfix { height: 1%;}
+.clearfix {display: block;}
+/* End hide from IE-mac */
+
+.top-bar {margin: 5px 0px 5px 0px;text-align: right;}
+.top-bar a {margin: 0px 5px 0px 5px;}
+.footer .copyright {font-size:12px;color:#999;text-align:center;padding:20px}
+.footer .copyright a {color:#999}
+.footer .copyright a:hover {color:#35b558}

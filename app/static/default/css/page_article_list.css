@@ -1,0 +1,71 @@
+.top-bar .index-page {}
+.top-bar .night-style {}
+.top-bar .search-page {}
+.top-bar .setting-page {}
+.top-bar .current-user {}
+.top-bar .logout-btn {}
+.top-bar .login-btn {}
+.top-bar .register-btn {}
+
+.layout_header{}
+.layout_body{}
+.layout_footer{}
+.layout_row{
+    width: 80%;
+    margin: 10px auto 10px auto;
+    text-align: left;
+}
+.layout_left{
+    float: left;
+    padding: 1%;
+    width: 75%;
+}
+.layout_right{}
+.tool_bar{
+    float: right;
+    margin-left: 15px;
+    font-size: 12px;
+}
+#article_list li
+{
+    border-style: solid;
+    border-width: 0px 0px 1px 0px;
+    border-color: #33CCCC;
+    padding: 10px 0px 10px 0px;
+    margin: 10px 0px 10px 0px;
+    list-style-type: none;
+}
+.article_title{}
+.tag_list{font-size: 11px;}
+.keyword_list{font-size: 11px;}
+.article_content{}
+.article_abstract{}
+.article_meta{
+    margin: 15px 0 8px 0;
+    color: #666666;
+    font-size: 12px;
+}
+
+.pagination {
+    height: 28px;
+    margin: 2px 0;
+}
+.pagination li {
+    text-align: center;
+    margin: 0 2px 0 0;
+    display: inline;
+}
+.pagination .disabled{display: none;}
+.pagination .active{}
+.pagination .active a{text-decoration: underline;}
+
+/* layout */
+@media print, screen and (min-width: 600px) and (max-width: 1000px) {
+    .layout_row {width: 100%;}
+}
+@media print, screen and (max-width: 600px) {
+    .top-bar .night-style {display:none;}
+    .top-bar .search-page {display:none;}
+    .layout_row {width: 100%;}
+    .layout_left {width: 98%;}
+}

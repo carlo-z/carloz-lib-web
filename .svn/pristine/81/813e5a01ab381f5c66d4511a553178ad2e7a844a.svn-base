@@ -1,0 +1,12 @@
+<div class="g_search_bar">
+    <a href="/">
+        <span class="logo">
+            <span class="logo_name">CARLO</span><span class="logo_rear">Z</span>
+        </span>
+    </a>
+    <form class="search_form" action="{{ url_for('main.search') }}">
+        <input class="search_text" name="keywords" type="text"  value="{{ keywords }}"/>
+        <input class="btn_submit" type="submit" value="search" />
+    </form>
+</div>
+<div class="clear"></div>

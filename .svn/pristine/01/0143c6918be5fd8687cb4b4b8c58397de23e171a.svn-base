@@ -1,0 +1,52 @@
+<div id="search_panel">
+    <div class="header">
+    {% include 'default/moudle_g_search_bar.html' %}
+    </div>
+    <div class="container">
+        <div class="tool_bar">
+            <input id="Radio1" type="radio" value="person" />
+            <label>person</label>
+            <input id="Radio2" type="radio" value="website" />
+            <label>website</label>
+        </div>
+        <div class="label_arr_list">
+            <div class="label_arr_item">
+                <h3>Android</h3>
+                <ul>
+                    <li><a href="#">Android</a></li>
+                    <li>Android</li>
+                    <li>Android</li>
+                    <li>Android</li>
+                    <li>Android</li>
+                </ul>
+                <div class="clear"></div>
+            </div>
+            <div class="label_arr_item">
+                <h3><a href="#">Android</a></h3>
+                <ul>
+                    <li><a href="#">Android</a></li>
+                    <li><a href="#">Android</a></li>
+                    <li><a href="#">Android</a></li>
+                    <li><a href="#">Android</a></li>
+                    <li><a href="#">Android</a></li>
+                    <li><a href="#">Android</a></li>
+                    <li><a href="#">Android</a></li>
+                    <li>Android</li>
+                    <li>Android</li>
+                    <li>Android</li>
+                    <li>Android</li>
+                </ul>
+                <div class="clear"></div>
+            </div>
+        </div>
+        <div class="clear"></div> 
+    </div>
+    <div class="footer">
+        <div class="clear"></div> 
+    </div>
+    <div class="clear"></div> 
+</div>
+<a id="elevator" class="go-to-top" href="#" style="display: inline;">
+    <img src="http://ueditor.baidu.com/doc/images/up.png">
+</a>
+<a class="search-tip-btn" data-type="open">Ctrl + Q 可以打开搜索框</a>

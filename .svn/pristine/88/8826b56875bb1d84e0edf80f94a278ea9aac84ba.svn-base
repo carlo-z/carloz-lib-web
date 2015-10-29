@@ -1,0 +1,21 @@
+<div id="article_edit">
+    <form action="" method="post" name="login">
+        {{form.hidden_tag()}}
+        <div id="article_edit_title">{{form.art_title(size=80)}}</div>
+        <div id="article_edit_body">
+            {% include 'default/moudle_ueditor.html' %}
+        </div>
+        <div id="article_edit_class">{{form.art_nav_id()}}</div>
+        <div id="article_edit_permission">
+            {{form.art_is_public()}}
+            {{form.access_pw()}}
+        </div>
+        <div id="article_edit_msg">
+        {% for error in form.errors.art_title %}
+            <span style="color: red;">[{{error}}]</span>{% endfor %}
+        </div>
+        <div id="article_edit_btn">
+            <input type="submit" value="Release">
+        </div>
+    </form>
+</div>

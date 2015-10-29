@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Qiniu Guide</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <link href="/static/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="/static/favicon.ico" rel="icon" type="image/x-icon"  />
+    <link href="/static/default/css/base.css" rel="stylesheet" type="text/css" />
+    <link href="/static/default/css/moudle_search_panel.css" rel="stylesheet" type="text/css" />
+    <link href="/static/default/css/moudle_g_search_bar.css" rel="stylesheet" type="text/css" />
+    <link href="/static/default/css/moudle_g_taglist.css" rel="stylesheet" type="text/css" />
+    <script src="/static/default/js/jquery-2.1.3.min.js" type="text/javascript"></script>
+    <script src="/static/default/js/stylelistener.jquery.min.js" type="text/javascript"></script>
+    <script src="/static/default/js/moudle_search_panel.js" type="text/javascript"></script>
+    <script src="/static/default/js/page_article_view.js" type="text/javascript"></script>
+    <link href="/static/default/css/page_article_view.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div class="wrap">
+    <div class="main clearfix">
+        <div id="panel_yang">
+            <div style="clear:both;"></div>
+            <div class="top-bar">
+    <span class="index-page"><a href="/">CARLOZ</a>&nbsp;|&nbsp;</span>
+    <span class="current-user"><a href="/admin/">carlo</a>&nbsp;|&nbsp;</span>
+    <span class="logout-btn"><a href="/auth/logout">退出</a></span>
+    
+</div>
+<div style="clear:both;"></div>
+<div class="layout_header"></div>
+<div style="clear:both;"></div>
+<div class="layout_body">
+    <div style="clear:both;"></div>
+    <div class="layout_row1">
+        <div style="clear:both;"></div>
+        <div class="layout_left ">
+            
+                <div id="article_title">
+                    <h1>Qiniu Guide</h1>
+                </div>
+                <div id="article_meta">
+                    <span class="mr15">作者：
+                        <a href="/carlo/">
+                            Carlo Zhang
+                        </a>
+                    </span>
+                    <span>更新：2015-07-13 16:15:31</span><br />
+                    <span><a></a></span>
+                    <div>
+                        <div class="tags-list">
+                            
+                            <a href="/tag/?tag_name=Qiniu" class="label">Qiniu</a>
+                            
+                        </div>
+                        <div style="clear:both;"></div>
+                    </div>
+                </div>
+                <div style="clear:both;"></div>
+                <div id="article_body">
+                    <p>1. 注册网址：&nbsp;http://www.qiniu.com/</p><p>2. 创建空间，即Bucket<br/></p><p><img src="http://7xjk1j.com1.z0.glb.clouddn.com/ueditor/ueditor/php/upload/image/2015714/002730917104.jpg" title="1.jpg" alt="1.jpg"/></p><p>3. 每个账号都有AccessKey 和 SecretKey</p><p><img src="http://7xjk1j.com1.z0.glb.clouddn.com/ueditor/ueditor/php/upload/image/2015714/002740683761.jpg" title="2.jpg" alt="2.jpg"/></p><p>4. 如下路径可以找到Download Url</p><p><img src="http://7xjk1j.com1.z0.glb.clouddn.com/ueditor/ueditor/php/upload/image/2015714/002749743405.jpg" title="3.jpg" alt="3.jpg"/></p>
+                </div>
+                <div id="article_evaluate"></div>
+                <div id="article_comment">
+                    <div class="comment_list">
+                    </div>
+                    <div id="comment_editor" class="comment_editor">
+                        <a name="comment_editor_anchor"></a>
+                        <a id="to_article_id" class="hidden">1</a>
+                        <a id="add_comment_quote" class="hidden"></a>
+                        <a id="to_comment_id" class="hidden"></a>
+                        <a id="editor_code" class="hidden">ueditor</a>
+                        <div id="comment_editor_head"  class="hidden">
+                            Re:<span id="to_user_name"></span>
+                            <a onclick="return cancel_comment()">cancel reply</a>
+                        </div>
+                        <div id="comment_editor_body">
+                            <textarea id="comment_body"></textarea>
+                            <input type="button" onclick="return submit_comment()" value="submit comment" class="btn" />
+                        </div>
+
+                        <script type='text/javascript'>
+                            var $SCRIPT_ROOT = "";
+                            function submit_comment() {
+                                if($.trim($('#comment_body').val()) == '') return false;
+                                var submit_url = '';
+                                if('true' == $('#add_comment_quote').text()){
+                                    submit_url = $SCRIPT_ROOT + "/article-comment/quote/";
+                                }else{
+                                    submit_url = $SCRIPT_ROOT + "/article-comment/add/";
+                                }
+                                $.ajax({
+                                    type: 'post',
+                                    url: submit_url,
+                                    dataType: 'html', //return data type
+                                    data:{
+                                        to_article_id: $('#to_article_id').text(),
+                                        to_comment_id: $('#to_comment_id').text(),
+                                        editor_code: $('#editor_code').text(),
+                                        comment_body: $('#comment_body').val()
+                                    },
+                                    error: function(xhr, err){
+                                        alert('submit failed, ' + err + '！')
+                                    },
+                                    success: function(data, textStatus){
+                                        $('.comment_list').append(data);
+                                    }
+                                });
+                                cancel_comment();
+                                return false;
+                            }
+                            function add_comment(comment_id, comment_to_user_name) {
+                                $('.comment_editor #to_comment_id').text(comment_id);
+                                $('.comment_editor #to_user_name').text(comment_to_user_name);
+                                $('.comment_editor #add_comment_quote').text('false');
+                                $('.comment_editor #comment_editor_head').show();
+                                $('html,body').animate({scrollTop:$('#comment_editor').offset().top}, 1000);
+                                return false;
+                            }
+                            function add_comment_quote(comment_id, comment_to_user_name) {
+                                $('.comment_editor #to_comment_id').text(comment_id);
+                                $('.comment_editor #to_user_name').text(comment_to_user_name);
+                                $('.comment_editor #add_comment_quote').text('true');
+                                $('.comment_editor #comment_editor_head').show();
+                                $('html,body').animate({scrollTop:$('#comment_editor').offset().top}, 1000);
+                                return false;
+                            }
+                            function cancel_comment() {
+                                $('.comment_editor #to_comment_id').text('');
+                                $('.comment_editor #to_user_name').text('');
+                                $('.comment_editor #comment_body').val('');
+                                $('.comment_editor #add_comment_quote').text('false');
+                                $('.comment_editor #comment_editor_head').hide();
+                                return false;
+                            }
+                            function delete_comment(comment_id) {
+                                $.getJSON($SCRIPT_ROOT + "/article-comment/delete/", {
+                                    comment_id: comment_id
+                                }, function(data) {
+                                    if('success' == data.result) {
+                                        $("#comment_"+comment_id).hide();
+                                    } else {
+                                        alert("delete comment fail");
+                                    }
+                                });
+                                return false;
+                            }
+                            function agree_comment(comment_id) {
+                                $.getJSON($SCRIPT_ROOT + "/article-comment/agree/", {
+                                    comment_id: comment_id
+                                }, function(data) {
+                                    if('success' == data.result) {
+                                        $("#comment_agree_"+comment_id).text(data.result_num);
+                                    }
+                                });
+                                return false;
+                            }
+                            function disagree_comment(comment_id) {
+                                $.getJSON($SCRIPT_ROOT + "/article-comment/disagree/", {
+                                    comment_id: comment_id
+                                }, function(data) {
+                                    if('success' == data.result) {
+                                        $("#comment_disagree_"+comment_id).text(data.result_num);
+                                    }
+                                });
+                                return false;
+                            }
+                        </script>
+                    </div>
+                </div>
+            
+        </div>
+        <div class="layout_right">
+        </div>
+    </div>
+</div>
+<div style="clear:both;"></div>
+            <div style="clear:both;"></div>
+        </div>
+        <div id="panel_yin" style="display: none;">
+            <div style="clear:both;"></div>
+            
+            <div id="search_panel">
+    <div class="header">
+    <div class="g_search_bar">
+    <a href="/">
+        <span class="logo">
+            <span class="logo_name">CARLO</span><span class="logo_rear">Z</span>
+        </span>
+    </a>
+    <form class="search_form" action="/search/">
+        <input class="search_text" name="keywords" type="text"  value=""/>
+        <input class="btn_submit" type="submit" value="search" />
+    </form>
+</div>
+<div class="clear"></div>
+    </div>
+    <div class="container">
+        <div class="tool_bar">
+            <input id="Radio1" type="radio" value="person" />
+            <label>person</label>
+            <input id="Radio2" type="radio" value="website" />
+            <label>website</label>
+        </div>
+        <div class="label_arr_list">
+            <div class="label_arr_item">
+                <h3>Android</h3>
+                <ul>
+                    <li><a href="#">Android</a></li>
+                    <li>Android</li>
+                    <li>Android</li>
+                    <li>Android</li>
+                    <li>Android</li>
+                </ul>
+                <div class="clear"></div>
+            </div>
+            <div class="label_arr_item">
+                <h3><a href="#">Android</a></h3>
+                <ul>
+                    <li><a href="#">Android</a></li>
+                    <li><a href="#">Android</a></li>
+                    <li><a href="#">Android</a></li>
+                    <li><a href="#">Android</a></li>
+                    <li><a href="#">Android</a></li>
+                    <li><a href="#">Android</a></li>
+                    <li><a href="#">Android</a></li>
+                    <li>Android</li>
+                    <li>Android</li>
+                    <li>Android</li>
+                    <li>Android</li>
+                </ul>
+                <div class="clear"></div>
+            </div>
+        </div>
+        <div class="clear"></div> 
+    </div>
+    <div class="footer">
+        <div class="clear"></div> 
+    </div>
+    <div class="clear"></div> 
+</div>
+<a id="elevator" class="go-to-top" href="#" style="display: inline;">
+    <img src="http://ueditor.baidu.com/doc/images/up.png">
+</a>
+<a class="search-tip-btn" data-type="open">Ctrl + Q 可以打开搜索框</a>
+            <div style="clear:both;"></div>
+        </div>
+    </div>
+</div>
+<div class="footer">
+    <div class="copyright">
+        Copyright ©
+        <strong><a href="/" target="_blank">CZLIB</a></strong>&nbsp;
+        <strong><a href="/" target="_blank">carlo-z.com</a></strong>
+        All Rights Reversed.
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,42 @@
+#tool_bar ul li
+{
+    float: left;
+    list-style: none;
+    padding: 5px 15px 5px 15px;
+}
+#article_list{
+    clear:both;
+}
+#article_list .article_list_area {min-height: 100px; margin-bottom:10px;}
+#article_list table
+{
+    width: 100%;
+}
+#tool_bar{
+    clear:both;
+}
+#article_list th
+{
+    font-weight: bold;
+    min-width:40px;
+}
+#article_list th,td{
+    padding: 5px 15px 5px 15px;
+    text-align:center;
+}
+#article_list h1 { margin: 20px 0 20px 2%;}
+.disuss,.pv,.public,.edit,.delete{}
+.page-index {padding-left: 1%;}
+.pagination {
+    height: 28px;
+    margin: 2px 0;
+}
+.pagination li {
+    text-align: center;
+    padding: 5px;
+    margin: 0 2px 0 0;
+    display: inline;
+}
+.pagination .disabled {display: none;}
+.pagination .active {}
+.pagination .active a {text-decoration: underline;}

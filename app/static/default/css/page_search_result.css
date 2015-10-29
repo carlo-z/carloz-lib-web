@@ -1,0 +1,100 @@
+.top-bar .index-page {display: none;}
+.top-bar .night-style {}
+.top-bar .search-page {}
+.top-bar .setting-page {}
+.top-bar .current-user {}
+.top-bar .logout-btn {}
+.top-bar .login-btn {}
+.top-bar .register-btn {}
+
+#search_result_panel{}
+#search_result_panel .content_top{}
+#search_result_panel .content_left
+{
+    padding: 0px 0px 0px 6%;
+    display: block;
+    width: 48%;
+    float: left;
+    overflow: hidden;
+}
+#search_result_panel .content_right
+{
+}
+#search_result_panel .refer_link
+{
+}
+#search_result_panel .page_index
+{
+}
+#search_result_panel .content_left .result_item_article
+{
+    margin: 0px 0px 15px 0px;
+    width: 100%;
+}
+#search_result_panel .content_left .result_item_article h3
+{
+    font-weight: normal;
+    font-size: 15px;
+    text-decoration: underline;
+}
+#search_result_panel .content_left .result_item_article ul
+{
+    list-style: none;
+}
+#search_result_panel .content_left .result_item_article ul li
+{
+    padding: 0px 10px 0px 0px;
+    float: left;
+    font-size: 13px;
+    color: #666666;
+}
+#search_result_panel .content_left .result_item_article .article_body
+{
+    clear: both;
+    font-size: 13px;
+    padding: 3px 0px 3px 0px;
+}
+#search_result_panel .content_left .result_item_article .article_body div,p,a
+{
+    font-size: 13px;
+}
+#search_result_panel .content_left .result_item_article .article_body img
+{
+    margin: 0px 5px 5px 0px;
+    width: 20%;
+    float: left;
+    display: block;
+}
+
+#search_result_panel .content_left .result_item_article .article_label
+{
+    clear: both;
+    font-size: 13px;
+}
+#search_result_panel .content_left .result_item_article .article_label a
+{
+    margin: 0px 3px 0px 0px;
+    padding: 3px 10px 3px 10px;
+    color: #008E59;
+    background: transparent;
+    text-decoration: none;
+    cursor: auto;
+}
+#search_result_panel .content_left .result_item_article .article_label a:hover, a:focus
+{
+    background-color: #017e66;
+    color: #fff;
+    text-decoration: none;
+}
+
+/* layout */
+@media print, screen and (min-width: 600px) and (max-width: 1000px) {
+    .layout_row1 {width:100%;}
+    #search_result_panel .content_left {width:70%;}
+}
+@media print, screen and (max-width: 600px){
+    .top-bar .night-style {display:none;}
+    .top-bar .search-page {display:none;}
+    .layout_row1 {width:100%;}
+    #search_result_panel .content_left {padding-left:0; width:98%;}
+}
